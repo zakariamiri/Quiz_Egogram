@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Un test d'égogramme moderne en 20 questions, sans inscription et sans base de données." />
+    <meta name="theme-color" content="#171a36" />
+    <title>ÉgoScope — Test d'égogramme</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <div class="ambient ambient-one" aria-hidden="true"></div>
+    <div class="ambient ambient-two" aria-hidden="true"></div>
+
+    <header class="site-header">
+      <a class="brand" href="#" aria-label="ÉgoScope, accueil">
+        <span class="brand-mark" aria-hidden="true">
+          <span></span><span></span><span></span>
+        </span>
+        <span>ÉgoScope</span>
+      </a>
+      <span class="privacy-pill"><span aria-hidden="true">●</span> 100 % local & confidentiel</span>
+    </header>
+
+    <main>
+      <section class="screen intro-screen is-active" id="intro" aria-labelledby="intro-title">
+        <div class="intro-copy">
+          <p class="eyebrow">Analyse transactionnelle · Égogramme fonctionnel</p>
+          <h1 id="intro-title">Quelle voix prend le plus de place en vous&nbsp;?</h1>
+          <p class="lead">
+            Explorez vos cinq états du Moi à travers 20 situations du quotidien.
+            Il n’y a ni bonne ni mauvaise réponse&nbsp;: choisissez celle qui vous ressemble aujourd’hui.
+          </p>
+          <div class="intro-actions">
+            <button class="button button-primary" id="start-button" type="button">
+              Commencer le test
+              <span aria-hidden="true">→</span>
+            </button>
+            <span class="duration"><span aria-hidden="true">◷</span> Environ 4 minutes</span>
+          </div>
+          <div class="trust-row" aria-label="Caractéristiques du test">
+            <span>20 questions essentielles</span>
+            <span>Résultat instantané</span>
+            <span>Aucune donnée envoyée</span>
+          </div>
+        </div>
+
+        <div class="intro-visual" aria-hidden="true">
+          <div class="orbit orbit-one"></div>
+          <div class="orbit orbit-two"></div>
+          <div class="mini-card card-parent">
+            <span class="mini-icon">P</span>
+            <div><strong>Parent</strong><small>Cadre & soutien</small></div>
+            <span class="mini-value">68</span>
+          </div>
+          <div class="mini-card card-adult">
+            <span class="mini-icon">A</span>
+            <div><strong>Adulte</strong><small>Analyse & choix</small></div>
+            <span class="mini-value">74</span>
+          </div>
+          <div class="mini-card card-child">
+            <span class="mini-icon">E</span>
+            <div><strong>Enfant</strong><small>Élan & adaptation</small></div>
+            <span class="mini-value">61</span>
+          </div>
+          <div class="visual-center">
+            <svg viewBox="0 0 180 180" role="img" aria-label="Aperçu d'un égogramme">
+              <circle cx="90" cy="90" r="72" pathLength="100" class="ring-base"></circle>
+              <circle cx="90" cy="90" r="72" pathLength="100" class="ring-value"></circle>
+            </svg>
+            <div><strong>5</strong><span>états du Moi</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="screen quiz-screen" id="quiz" aria-labelledby="question-title">
+        <div class="quiz-shell">
+          <div class="quiz-topline">
+            <button class="text-button" id="quit-button" type="button" aria-label="Revenir à l'accueil">← Quitter</button>
+            <div class="progress-copy"><strong id="question-count">Question 1</strong><span> sur 20</span></div>
+            <span class="answered-copy" id="answered-count">0 réponse</span>
+          </div>
+          <div class="progress-track" aria-hidden="true"><span id="progress-bar"></span></div>
+
+          <article class="question-card" aria-live="polite">
+            <div class="question-number" id="question-number">01</div>
+            <p class="question-kicker">Dans quelle mesure cette phrase vous correspond-elle&nbsp;?</p>
+            <h2 id="question-title"></h2>
+
+            <fieldset class="answers" id="answers">
+              <legend class="sr-only">Choisissez une réponse</legend>
+            </fieldset>
+            <p class="keyboard-hint">Astuce&nbsp;: utilisez les touches 1 à 5 pour répondre.</p>
+          </article>
+
+          <div class="quiz-navigation">
+            <button class="button button-ghost" id="previous-button" type="button">← Précédent</button>
+            <button class="button button-primary" id="next-button" type="button" disabled>Suivant <span aria-hidden="true">→</span></button>
+          </div>
+        </div>
+      </section>
+
+      <section class="screen results-screen" id="results" aria-labelledby="results-title">
+        <div class="results-hero">
+          <div>
+            <p class="eyebrow">Votre égogramme</p>
+            <h1 id="results-title">Votre énergie dominante est <span id="dominant-title"></span>.</h1>
+            <p class="lead" id="dominant-summary"></p>
+          </div>
+          <div class="score-seal" id="score-seal" aria-label="Score dominant">
+            <strong id="dominant-score">0%</strong>
+            <span>intensité</span>
+          </div>
+        </div>
+
+        <div class="results-grid">
+          <article class="panel chart-panel">
+            <div class="panel-heading">
+              <div>
+                <p class="eyebrow">Vue détaillée</p>
+                <h2>Vos 10 facettes</h2>
+              </div>
+              <div class="legend"><span></span> Votre score</div>
+            </div>
+            <div class="chart-wrap">
+              <div class="chart-y-axis" aria-hidden="true"><span>100</span><span>75</span><span>50</span><span>25</span><span>0</span></div>
+              <div class="bar-chart" id="detail-chart" role="img" aria-label="Graphique des résultats détaillés"></div>
+            </div>
+            <p class="chart-note">Un score élevé indique une énergie souvent mobilisée, pas une qualité «&nbsp;meilleure&nbsp;».</p>
+          </article>
+
+          <aside class="panel profile-panel">
+            <p class="eyebrow">Lecture rapide</p>
+            <h2 id="profile-title"></h2>
+            <p id="profile-description"></p>
+            <div class="profile-strength">
+              <span>Votre ressource</span>
+              <strong id="profile-strength"></strong>
+            </div>
+            <div class="profile-watch">
+              <span>Point d’attention</span>
+              <p id="profile-watch"></p>
+            </div>
+          </aside>
+        </div>
+
+        <article class="panel families-panel">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">Synthèse</p>
+              <h2>Les 5 grandes familles</h2>
+            </div>
+            <p>Survolez ou sélectionnez une carte pour lire sa signification.</p>
+          </div>
+          <div class="family-grid" id="family-grid"></div>
+        </article>
+
+        <div class="result-actions">
+          <button class="button button-primary" id="restart-button" type="button">Recommencer le test</button>
+          <button class="button button-ghost" id="print-button" type="button">Imprimer / enregistrer en PDF</button>
+        </div>
+        <p class="disclaimer">Cet outil propose une piste de réflexion personnelle. Il ne constitue ni un diagnostic psychologique ni un avis médical.</p>
+      </section>
+    </main>
+
+    <footer>
+      <span>ÉgoScope</span>
+      <span>Inspiré de l’analyse transactionnelle d’Eric Berne</span>
+    </footer>
+  </body>
+</html>
